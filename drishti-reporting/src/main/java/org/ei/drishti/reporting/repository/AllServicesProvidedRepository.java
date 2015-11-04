@@ -1,17 +1,22 @@
 package org.ei.drishti.reporting.repository;
 
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.List;
 import org.ei.drishti.reporting.domain.*;
 import org.joda.time.LocalDate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import java.util.Date;
-import java.util.List;
-
 @Repository
-public class  AllServicesProvidedRepository {
+public class AllServicesProvidedRepository {
+
     private DataAccessTemplate dataAccessTemplate;
+    private static Logger logger = LoggerFactory
+            .getLogger(AllServicesProvidedRepository.class.toString());
 
     protected AllServicesProvidedRepository() {
     }
@@ -51,5 +56,55 @@ public class  AllServicesProvidedRepository {
 
     public void deleteReportsFor(String dristhiEntityId) {
         dataAccessTemplate.deleteAll(getAllReportsForDristhiEntityID(dristhiEntityId));
+    }
+
+    public void ecsave(String entityid, String phonenumber) {
+        logger.info("####### ecsave method invoked$$$$$");
+        dataAccessTemplate.save(new EcRegDetails(entityid, phonenumber));
+
+    }
+
+    public void ancsave(String entityid, String patientnum, String anmnum, String visittype, Integer visitno, String lmpdate, String womenname, String visitdate, String anmid) {
+        logger.info("####### ancsave method invoked$$$$$");
+        dataAccessTemplate.save(new ANCVisitDue(entityid, patientnum, anmnum, visittype, visitno, lmpdate, womenname, visitdate, anmid));
+
+    }
+
+    public void ecupdate(Integer id, String phoneNumber) {
+
+        EcRegDetails objectToUpdate = (EcRegDetails) dataAccessTemplate.get(EcRegDetails.class, id);
+        objectToUpdate.setphonenumber(phoneNumber);
+        dataAccessTemplate.saveOrUpdate(objectToUpdate);
+        logger.info(" visit date: " + objectToUpdate);
+        logger.info(" visit date2: ");
+    }
+
+    public void ancupdate(Integer id, String phonenumber) {
+
+        ANCVisitDue objectToUpdate = (ANCVisitDue) dataAccessTemplate.get(ANCVisitDue.class, id);
+        objectToUpdate.setpatientnum(phonenumber);
+        dataAccessTemplate.saveOrUpdate(objectToUpdate);
+        logger.info(" visit date: " + objectToUpdate);
+        logger.info(" visit date2: ");
+    }
+
+    public void ancvisitupdate(Integer id, String newdate, Integer visitno) {
+
+        ANCVisitDue objectToUpdate = (ANCVisitDue) dataAccessTemplate.get(ANCVisitDue.class, id);
+        objectToUpdate.setvisitdate(newdate);
+        objectToUpdate.setvisitno(visitno);
+        dataAccessTemplate.saveOrUpdate(objectToUpdate);
+        logger.info(" visit date: " + objectToUpdate);
+        logger.info(" visit date2: ");
+    }
+
+    public void pocsave(String visittype, String visitentityid, String entityidec, String anmid, String phc, String timestamp, String wifename) {
+        logger.info("####### pocsave method invoked$$$$$" + phc);
+
+        java.util.Date date = new java.util.Date();
+        Timestamp timestamp1 = new Timestamp(date.getTime());
+
+        dataAccessTemplate.save(new POC_Table(visitentityid, entityidec, anmid, "1", " ", " ", visittype, phc, " ", " ", timestamp1, wifename));
+
     }
 }

@@ -156,6 +156,12 @@
             <artifactId>drishti-interface</artifactId>
             <version>0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>org.ei.drishti</groupId>
+            <artifactId>drishti-reporting</artifactId>
+            <version>0.1-SNAPSHOT</version>
+            <type>war</type>
+        </dependency>
     </dependencies>
 
     <build>

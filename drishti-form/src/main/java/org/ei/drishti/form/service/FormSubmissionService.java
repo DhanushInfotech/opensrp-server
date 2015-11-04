@@ -36,8 +36,11 @@ public class FormSubmissionService {
         });
     }
 
-    public List<FormSubmission> getNewSubmissionsForANM(String anmIdentifier, Long version, Integer batchSize) {
-        return allFormSubmissions.findByANMIDAndServerVersion(anmIdentifier, version, batchSize);
+    public List<FormSubmission> getNewSubmissionsForANM(String village,
+            Long version, Integer batchSize) {
+        logger.info("******getnew submissios******");
+        return allFormSubmissions.findByVillageAndServerVersion(village,
+                version, batchSize);
     }
 
     public List<FormSubmission> getAllSubmissions(Long version, Integer batchSize) {
