@@ -166,7 +166,7 @@ public class FormDatahandlerTest {
 		VisitConf visitconf = new VisitConf("8", "10", "15", "20");
 		when(visitService.getVisitconf()).thenReturn(asList(visitconf));
 		when(dateUtil.dateFormat("datetime", 32)).thenReturn(("12/7/2015"));
-		formDatahandler.ancVisit(dataobject, "anc_visist", "32434");
+		formDatahandler.ancVisit(dataobject, "anc_visist");
 
 	}
 
@@ -176,11 +176,11 @@ public class FormDatahandlerTest {
 		JSONObject dataobject = data();
 		ANMVillages anmvillages = new ANMVillages("villages", "user_role","user_id", "name", "phone_number", 233, 324, 324, 324, 243,32432);
 		when(anmService.getANMVillages("anm123")).thenReturn(asList(anmvillages));
-		formDatahandler.visitpoc(dataobject, "Subcenter", "12645");
+		formDatahandler.visitpoc(dataobject, "Subcenter");
 		HealthCenter healthCenter = new HealthCenter(234234, "hospital_name","hospital_type", "hospital_address", "parent_hospital","villages", 324, 324, 324, 23234);
 		when(anmService.getPHCDetails(243)).thenReturn(asList(healthCenter));
-		formDatahandler.visitpoc(dataobject, "Subcenter", "12645");
-		formDatahandler.visitpoc(dataobject, "anc_visit", "1265");
+		formDatahandler.visitpoc(dataobject, "Subcenter");
+		formDatahandler.visitpoc(dataobject, "anc_visit");
 		ancVisitRepository.pocinsert(null, null, null, null, null, null, null);
 		verify(ancVisitRepository).pocinsert(null, null, null, null, null,null, null);
 
