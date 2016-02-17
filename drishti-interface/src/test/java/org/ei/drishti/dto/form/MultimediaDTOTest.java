@@ -10,6 +10,7 @@ public class MultimediaDTOTest {
 	@Before
 	public void setUp(){
 		multimedia = new MultimediaDTO();
+		multimedia = new MultimediaDTO(null, null, null, null, null);
 	}
 	@Test
 	public void caseIdTest(){

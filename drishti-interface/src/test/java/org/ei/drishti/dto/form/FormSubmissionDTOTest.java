@@ -11,6 +11,12 @@ public class FormSubmissionDTOTest {
 	public void setUp(){
 		formsubmission = new FormSubmissionDTO(null, null, null, null, null, null, null);
 	}
+	
+	@Test
+	public void withServerVersion_Test(){
+		formsubmission.withServerVersion("version");
+	}
+	
 	@Test
 	public void anmIdTest(){
 		String w= formsubmission.anmId();

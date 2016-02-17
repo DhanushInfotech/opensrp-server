@@ -224,5 +224,33 @@ public class FormDatahandlerTest {
 		formDatahandler.childImmunization(dataobject, "anc_registration");
 
 	}
+	
+	@Test
+	public void ecClose_TEst() throws JSONException{
+		
+		JSONObject dataObject = data();
+		formDatahandler.ecClose(dataObject, "anmphoneNumber");
+	}
+	
+	@Test
+	public void ancClose_Test() throws JSONException{
+		
+		JSONObject dataObject = data();
+		formDatahandler.ancClose(dataObject, "visittype", "anmNumber");
+	}
+	
+	@Test
+	public void pncClose_Test() throws JSONException{
+		
+		JSONObject dataObject = data();
+		formDatahandler.pncClose(dataObject, "visittype", "anmNumber");
+	}
+	
+	@Test
+	public void child_illness_Test() throws JSONException{
+		
+		JSONObject dataObject = data();
+		formDatahandler.child_illness(dataObject, "visittype");
+	}
 
 }

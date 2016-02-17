@@ -12,6 +12,8 @@ private FormSubmission formSubmission;
 	@Before
 	public void setUp(){
 		formSubmission = new FormSubmission();
+		formSubmission = new FormSubmission(null, null, null, null, null, 0, null);
+		formSubmission = new FormSubmission(null, null, null, null, 0, null, null, 0);
 	}
 	
 	@Test

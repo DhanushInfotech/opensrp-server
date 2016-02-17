@@ -12,13 +12,19 @@ private SubFormData subFormData;
 	@Before
 	public void setUp(){
 		subFormData = new SubFormData();
+		subFormData = new SubFormData(null, null);
 	}
 	
 	@Test
 	public void nameTest(){
-		String t= subFormData.name();
-		String x="";
-		assertEquals(t,x);
+		
+		subFormData.name();
+	}
+	
+	@Test
+	public void instances_Test(){
+		
+		subFormData.instances();
 	}
 	
 	@Test

@@ -12,6 +12,10 @@ private FormField formField;
 	@Before
 	public void setUp(){
 		formField = new FormField();
+		String value = null;
+		String name = null;
+		String source = null;
+		formField = new FormField(name, value, source);
 	}
 	
 	@Test

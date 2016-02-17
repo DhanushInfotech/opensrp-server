@@ -13,6 +13,7 @@ public class ActionTest {
 	
 	 @Before
 	 public void setUp(){
+		 action = new Action();
 		 action = new Action(null,null,null,null,null,null,null);
 	 }
 	@Test

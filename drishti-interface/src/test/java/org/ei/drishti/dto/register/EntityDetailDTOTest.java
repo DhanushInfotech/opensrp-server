@@ -66,6 +66,11 @@ public class EntityDetailDTOTest {
 	}
 	
 	@Test
+	public void withEntityType_Test(){
+		entityDetails.withEntityType("type");
+	}
+	
+	@Test
 	public void equalsTest(){
 		Object o = null;
 		boolean t= entityDetails.equals(o);

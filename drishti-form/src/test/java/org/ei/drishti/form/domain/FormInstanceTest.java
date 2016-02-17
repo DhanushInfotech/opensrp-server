@@ -12,6 +12,7 @@ private FormInstance formInstance;
 	@Before
 	public void setUp(){
 		formInstance = new FormInstance();
+		formInstance = new FormInstance(null);
 	}
 	
 	@Test

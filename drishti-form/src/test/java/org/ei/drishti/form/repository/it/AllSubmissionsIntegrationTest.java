@@ -21,6 +21,7 @@ public class AllSubmissionsIntegrationTest {
 
     @Before
     public void setUp() throws Exception {
+    	
         formSubmissions.removeAll();
     }
 
@@ -91,4 +92,54 @@ public class AllSubmissionsIntegrationTest {
 
         assertEquals(0, formSubmissions.findByANMIDAndServerVersion("ANM 1", thirdFormSubmission.serverVersion(), null).size());
     }
+    
+    @Test
+    public void findByVillageAndServerVersionTest(){
+    	Integer batchSize = null;
+		long version = 0;
+		formSubmissions.findByVillageAndServerVersion("village", version, batchSize);
+    }
+    
+    @Test
+    public void findbyId_Test(){
+    	
+    	formSubmissions.findbyId();
+    }
+    
+    @Test
+    public void findall_Test(){
+    	
+    	formSubmissions.findall();
+    }
+    
+    @Test
+    public void findbyEntity_Test(){
+    	
+    	formSubmissions.findbyEntity();
+    }
+    
+    @Test
+    public void findbyInstanceId_Test(){
+    	
+    	formSubmissions.findbyInstanceId();
+    }
+    
+    @Test
+    public void findbyentityId1_Test(){
+    	
+    	formSubmissions.findbyentityId1();
+    }
+    
+    @Test
+    public void findbyregId_Test(){
+    	
+    	formSubmissions.findbyregId();
+    }
+    
+    @Test
+    public void findcheckEdit_Test(){
+    	
+    	formSubmissions.findcheckEdit();
+    }
+    
 }

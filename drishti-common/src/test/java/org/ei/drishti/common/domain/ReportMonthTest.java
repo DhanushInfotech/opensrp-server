@@ -4,6 +4,8 @@ import org.joda.time.LocalDate;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import java.util.Date;
+
 public class ReportMonthTest {
 
     private final ReportMonth reportMonth = new ReportMonth();
@@ -78,5 +80,15 @@ public class ReportMonthTest {
         assertFalse(reportMonth.areDatesBelongToSameReportingMonth(LocalDate.parse("2013-01-25"), LocalDate.parse("2013-01-26")));
         assertFalse(reportMonth.areDatesBelongToSameReportingMonth(LocalDate.parse("2013-01-26"), LocalDate.parse("2013-02-26")));
     }
-}
+    
+    @Test
+    public void startDateOfReportingYear_Test(){
+    	assertThat(reportMonth.startDateOfReportingYear());
+    }
 
+
+	private void assertThat(Date date) {
+		// TODO Auto-generated method stub
+		
+	}	
+}

@@ -12,6 +12,7 @@ public class MonthSummaryDatumTest {
 	@Before
 	public void setUp(){
 		monthsummary = new MonthSummaryDatum();
+		monthsummary = new MonthSummaryDatum(null, null, null, null, null);
 	}
 	
 	@Test

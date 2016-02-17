@@ -13,6 +13,7 @@ public class ServiceProvidedReportDTOTest {
 	@Before
 	public void setUp(){
 		serviceProvidedReportDTO = new ServiceProvidedReportDTO();
+		serviceProvidedReportDTO = new ServiceProvidedReportDTO(null, null, null, null, null, null, null, null, null, null, null);
 	}
 	
 	@Test

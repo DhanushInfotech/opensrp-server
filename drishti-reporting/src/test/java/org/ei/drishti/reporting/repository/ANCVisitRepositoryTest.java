@@ -79,4 +79,37 @@ public class ANCVisitRepositoryTest {
 		
 	}
 	
+	@Test
+	public void ecinsert_Test(){
+		
+		ancvisitRepository.ecinsert("visitentityid", "entityidec", "patient_name", "anm_id", "activity",
+				"indicator", 78, "date", "location", 1, "other_date", "visit_location", "dob");
+	}
+	
+	@Test
+	public void ancinsert_Test(){
+		
+		ancvisitRepository.ancinsert("visitentityid", "entityidec", "patient_name", "anm_id", "activity", "indicator",
+				256, "date", "location", 2, "other_date", "visit_location", "dob");
+	}
+	
+	@Test
+	public void pncinsert_Test(){
+		
+		ancvisitRepository.pncinsert("visitentityid", "entityidec", "patient_name", "anm_id", "activity", "indicator",
+				256, "date", "location", 2, "other_date", "visit_location", "dob");
+	}
+	
+	@Test
+	public void anctopncinsert_Test(){
+		
+		ancvisitRepository.anctopncinsert("visitentityid", "entityidec", "patient_name", "anm_id", "activity", "indicator",
+				256, "date", "location", 2, "other_date", "visit_location", "dob");
+	}
+		
+	
+
 }
+
+
+

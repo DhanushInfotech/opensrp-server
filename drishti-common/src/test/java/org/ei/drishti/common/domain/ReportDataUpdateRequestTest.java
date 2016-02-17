@@ -14,6 +14,7 @@ public class ReportDataUpdateRequestTest {
 	@Before
 	public void setUp(){
 		reportDataUpdateRequest = new ReportDataUpdateRequest();
+		reportDataUpdateRequest = new ReportDataUpdateRequest(null);
 	}
 		
 	@Test

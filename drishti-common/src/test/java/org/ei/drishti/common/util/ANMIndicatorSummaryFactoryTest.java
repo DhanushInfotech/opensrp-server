@@ -36,5 +36,10 @@ public class ANMIndicatorSummaryFactoryTest {
 		 
 		   anmindicatorSummaryFactory.createSummaryForCondom();
 	   }
+	   
+	   @Test
+	   public void createSummaryForIUD_Test(){
+		   anmindicatorSummaryFactory.createSummaryForIUD();
+	   }
 
 }

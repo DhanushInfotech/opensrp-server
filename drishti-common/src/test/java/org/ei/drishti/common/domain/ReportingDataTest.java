@@ -12,6 +12,7 @@ public class ReportingDataTest {
 	@Before
 	public void setUp() {
 		reportingData = new ReportingData(null, null);
+		reportingData = new ReportingData(null);
 	}
 
 	@Test
@@ -39,5 +40,38 @@ public class ReportingDataTest {
 	public void toStringTest() {
 		reportingData.toString();
 	}
+	
+	@Test
+	public void with_Test(){
+		String value = null;
+		String key = null;
+		reportingData.with(key, value);
+	}
+	
+	@Test
+	public void withQuantity_Test(){
+		String quantity = null;
+		reportingData.withQuantity(quantity);
+	}
+	
+	@Test
+	public void get_Test(){
+		String key = null;
+		reportingData.get(key);
+	}
 
+	
+	@Test
+	public void getMissingReportDataForANMReport_Test(){
+		reportingData.getMissingReportDataForANMReport();
+	}
+	
+	@Test
+	public void getMissingReportDataForServiceProvided_Test(){
+		reportingData.getMissingReportDataForServiceProvided();
+	}
+		
 }
+
+
+

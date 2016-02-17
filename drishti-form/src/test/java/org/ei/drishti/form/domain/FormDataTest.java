@@ -14,6 +14,7 @@ private FormData formData;
 	@Before
 	public void setUp(){
 		formData = new FormData();
+		formData = new FormData(null, null, null, null);
 	}
 	
 	@Test

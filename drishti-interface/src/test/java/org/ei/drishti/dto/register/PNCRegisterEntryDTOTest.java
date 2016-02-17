@@ -2,6 +2,9 @@ package org.ei.drishti.dto.register;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+import java.util.Map;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -77,6 +80,18 @@ public class PNCRegisterEntryDTOTest {
 	@Test
 	public void withDeliveryComplicationsTest(){
 		pncRegisterEntryDTO.withDeliveryComplications("deliveryComplications");
+	}
+	
+	@Test
+	public void withChildrenDetails_Test(){
+		List<Map<String, String>> childrenDetails = null;
+		pncRegisterEntryDTO.withChildrenDetails(childrenDetails);
+	}
+	
+	@Test
+	public void withPNCVisits_Test(){
+		List<PNCVisitDTO> pncVisits = null;
+		pncRegisterEntryDTO.withPNCVisits(pncVisits);
 	}
 	
 	@Test
