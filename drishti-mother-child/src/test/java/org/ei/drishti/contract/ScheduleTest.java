@@ -1,5 +1,6 @@
 package org.ei.drishti.contract;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -10,6 +11,13 @@ import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
 
 public class ScheduleTest {
+	
+	private Schedule schedule;
+	
+	@Before
+	public void setUp(){
+		schedule = new Schedule(null, null);
+	}
 
     @Test
     public void shouldTestScheduleDependency(){
@@ -19,5 +27,10 @@ public class ScheduleTest {
         assertTrue(schedule2.hasDependency());
         assertTrue(schedule2.dependsOn(schedule1));
         assertFalse(schedule1.dependsOn(schedule2));
+    }
+    
+    @Test
+    public void toString_Test(){
+    	schedule.toString();
     }
 }
