@@ -1,4 +1,5 @@
-INSERT INTO report.dim_anm (anmIdentifier, phc) VALUES ('c', (SELECT ID FROM report.dim_phc WHERE phcIdentifier='bherya'));
+
+ INSERT INTO report.dim_anm (anmIdentifier, phc) VALUES ('c', (SELECT ID FROM report.dim_phc WHERE phcIdentifier='bherya'));
 
 INSERT INTO report.dim_service_provider (service_provider, type) VALUES (
   (SELECT ID FROM report.dim_anm WHERE anmIdentifier='c'),
@@ -173,4 +174,3 @@ INSERT INTO report.annual_target (service_provider, indicator, target, start_dat
 INSERT INTO report.annual_target (service_provider, indicator, target, start_date, end_date) VALUES ((SELECT sp.ID FROM report.dim_service_provider sp, report.dim_anm a WHERE sp.service_provider = a.id and anmIdentifier='demo3'), (SELECT ID FROM report.dim_indicator WHERE indicator='D_PRI'), 26, '2012-03-26', '2013-03-25');
 INSERT INTO report.annual_target (service_provider, indicator, target, start_date, end_date) VALUES ((SELECT sp.ID FROM report.dim_service_provider sp, report.dim_anm a WHERE sp.service_provider = a.id and anmIdentifier='demo3'), (SELECT ID FROM report.dim_indicator WHERE indicator='DPT3_OPV3'), 40, '2012-03-26', '2013-03-25');
 INSERT INTO report.annual_target (service_provider, indicator, target, start_date, end_date) VALUES ((SELECT sp.ID FROM report.dim_service_provider sp, report.dim_anm a WHERE sp.service_provider = a.id and anmIdentifier='demo3'), (SELECT ID FROM report.dim_indicator WHERE indicator='DPTB_OPVB'), 45, '2012-03-26', '2013-03-25');
-

@@ -31,12 +31,6 @@ CREATE TABLE report.dim_service_provider (ID SERIAL, service_provider INTEGER NO
   CONSTRAINT FK_DSP_DST_ID FOREIGN KEY (type) REFERENCES report.dim_service_provider_type (ID),
   CONSTRAINT U_SP_TY UNIQUE (service_provider, type));
 
-CREATE TABLE report.annual_target (ID SERIAL, service_provider INTEGER NOT NULL, indicator INTEGER NOT NULL, target VARCHAR NOT NULL, start_date DATE NOT NULL, end_date DATE NOT NULL,
-  CONSTRAINT pk_annual_target PRIMARY KEY (ID),
-  CONSTRAINT FK_AT_DSP_ID FOREIGN KEY (service_provider) REFERENCES report.dim_service_provider (ID),
-  CONSTRAINT FK_AT_DI_ID FOREIGN KEY (indicator) REFERENCES report.dim_indicator (ID),
-  CONSTRAINT U_AT_SP_IN_TA_SD_ED UNIQUE (service_provider, indicator, start_date, end_date));
-
 CREATE TABLE report.service_provided (ID SERIAL, service_provider INTEGER NOT NULL, externalId VARCHAR NOT NULL, indicator INTEGER NOT NULL, date_ INTEGER NOT NULL, location INTEGER NOT NULL,
   CONSTRAINT pk_service_provided PRIMARY KEY (ID),
   CONSTRAINT FK_SP_DSP_ID FOREIGN KEY (service_provider) REFERENCES report.dim_service_provider (ID),
@@ -139,3 +133,13 @@ CONSTRAINT visit_configuration_pkey PRIMARY KEY (id));
 CREATE TABLE report.ec_reg (id SERIAL,entityid character varying(200) NOT NULL,phonenumber character varying(200) NOT NULL);
 
 CREATE TABLE report.app_reporting (id SERIAL,visitentityid character varying(50),entityidec character varying(50) NOT NULL,patient_name character varying(100) NOT NULL,anm_id character varying(25) NOT NULL,activity character varying(25) NOT NULL,indicators character varying(50),indicator_count integer,date character varying NOT NULL,location character varying(50) NOT NULL,child_weight integer,other_date character varying,visit_location character varying(50),dob character varying(200));
+
+CREATE TABLE report.annual_targets (ID SERIAL, anm INTEGER, indicators character varying(25), target INTEGER, year INTEGER,
+	  CONSTRAINT annual_target_pkey PRIMARY KEY (id),
+	  CONSTRAINT annual_target_anm_fkey FOREIGN KEY (anm) REFERENCES report.user_masters_new(id));  
+	
+CREATE TABLE report.annual_target (ID SERIAL, service_provider INTEGER NOT NULL, indicator INTEGER NOT NULL, target VARCHAR NOT NULL, start_date DATE NOT NULL, end_date DATE NOT NULL,
+  CONSTRAINT pk_annual_target PRIMARY KEY (ID),
+  CONSTRAINT FK_AT_DSP_ID FOREIGN KEY (service_provider) REFERENCES report.dim_service_provider (ID),
+  CONSTRAINT FK_AT_DI_ID FOREIGN KEY (indicator) REFERENCES report.dim_indicator (ID),
+  CONSTRAINT U_AT_SP_IN_TA_SD_ED UNIQUE (service_provider, indicator, start_date, end_date));

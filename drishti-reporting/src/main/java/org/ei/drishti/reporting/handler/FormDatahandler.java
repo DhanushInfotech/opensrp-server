@@ -1112,7 +1112,10 @@ public class FormDatahandler {
                         && jsonObject.getString("value") != null ? jsonObject
                                 .getString("value") : "";
             }
-            if ((jsonObject.has("name")) && jsonObject.getString("name").equals("isConsultDoctor")) {
+            if ((jsonObject.has("name")) && jsonObject.getString("name").equals("isConsultDoctor") || 
+            		jsonObject.getString("name").equals("isPNCConsultDoctor") || 
+            		jsonObject.getString("name").equals("isChildConsultDoctor") || 
+            		jsonObject.getString("name").equals("isANCConsultDoctor")) {
                 String isCon = (jsonObject.has("value") && jsonObject
                         .getString("value") != null) ? jsonObject
                                 .getString("value") : "";
