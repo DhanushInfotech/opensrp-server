@@ -80,4 +80,9 @@ public class ANMService {
     public ANMVillages getANMLocation(String anmIdentifier) {
         return allLocationsRepository.fetchLocationByANMIdentifier(anmIdentifier);
     }
+    
+    @Transactional("service_provided")
+    public List getVisitPocdetails(String entityId, String entityidEC) {
+        return allLocationsRepository.Pocdetails(entityId, entityidEC);
+    }
 }

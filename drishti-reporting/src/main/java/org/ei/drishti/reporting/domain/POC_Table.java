@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -22,8 +23,12 @@ import org.apache.commons.lang.builder.ToStringBuilder;
  */
 @Entity
 @Table(name = "poc_table")
+@NamedQuery(name = POC_Table.FIND_BY_VISITENTITYID_AND_ENTITYIDEC, query = "select e from POC_Table e where e.visitentityid=:visitentityid and e.entityidec = :entityidec")
+
 public class POC_Table {
 
+	public static final String FIND_BY_VISITENTITYID_AND_ENTITYIDEC = "find.by.visitentityid";
+	
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -92,49 +97,85 @@ public class POC_Table {
     public String visitentityid() {
         return visitentityid;
     }
+    public void setvisitentityid(String visitentityid) {
+    	this.visitentityid=visitentityid;
+    }
 
     public String entityidec() {
         return entityidec;
+    }
+    public void setentityidec(String entityidec) {
+    	this.entityidec=entityidec;
     }
 
     public String anmid() {
         return anmid;
     }
+    public void setanmid(String anmid) {
+    	this.anmid=anmid;
+    }
 
     public String level() {
         return level;
+    }
+    public void setlevel(String level) {
+    	this.level=level;
     }
 
     public String clientversion() {
         return clientversion;
     }
+    public void setclientversion(String clientversion) {
+    	this.clientversion=clientversion;
+    }
 
     public String serverversion() {
         return serverversion;
+    }
+    public void setserverversion(String serverversion) {
+    	this.serverversion=serverversion;
     }
 
     public String visittype() {
         return visittype;
     }
+    public void setvisittype(String visittype) {
+    	this.visittype=visittype;
+    }
 
     public String phc() {
         return phc;
+    }
+    public void setphc(String phc) {
+    	this.phc=phc;
     }
 
     public String pending() {
         return pending;
     }
+    public void setpending(String pending) {
+    	this.pending=pending;
+    }
 
     public String docid() {
         return docid;
+    }
+    public void setdocid(String docid) {
+    	this.docid=docid;
     }
 
     public Timestamp timestamp() {
         return timestamp;
     }
+    public void settimestamp(Timestamp timestamp) {
+    	this.timestamp=timestamp;
+    }
 
     public String wifename() {
         return wifename;
+    }
+    public void setwifename(String wifename) {
+    	this.wifename=wifename;
     }
 
     @Override

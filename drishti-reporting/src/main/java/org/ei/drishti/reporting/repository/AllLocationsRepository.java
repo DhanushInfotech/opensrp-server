@@ -5,6 +5,7 @@ import org.ei.drishti.reporting.domain.ANMVillages;
 import org.ei.drishti.reporting.domain.EcRegDetails;
 import org.ei.drishti.reporting.domain.HealthCenter;
 import org.ei.drishti.reporting.domain.Location;
+import org.ei.drishti.reporting.domain.POC_Table;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,5 +73,13 @@ public class AllLocationsRepository {
     public ANMVillages fetchLocationByANMIdentifier(String anmIdentifier) {
         return (ANMVillages) dataAccessTemplate.findByNamedQueryAndNamedParam(ANMVillages.FIND_BY_USER_ID,
                 new String[]{"anmIdentifier"}, new Object[]{anmIdentifier}).get(0);
+    }
+    
+    public List Pocdetails(String entityId, String entityidEC) {
+        String visitentityid = entityId;
+        String entityidec = entityidEC;
+        logger.info("try to fetch POC details");
+        return dataAccessTemplate.findByNamedQueryAndNamedParam(POC_Table.FIND_BY_VISITENTITYID_AND_ENTITYIDEC,
+                new String[]{"visitentityid","entityidec"}, new Object[]{visitentityid,entityidec});
     }
 }

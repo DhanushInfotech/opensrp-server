@@ -14,6 +14,7 @@ import org.ei.drishti.reporting.domain.ANCVisitDue;
 import org.ei.drishti.reporting.domain.ANMVillages;
 import org.ei.drishti.reporting.domain.EcRegDetails;
 import org.ei.drishti.reporting.domain.HealthCenter;
+import org.ei.drishti.reporting.domain.POC_Table;
 import org.ei.drishti.reporting.domain.VisitConf;
 import org.ei.drishti.reporting.repository.ANCVisitRepository;
 import org.ei.drishti.reporting.service.ANMService;
@@ -121,7 +122,7 @@ public class FormDatahandler {
             }
         }   
         logger.info("invoke sms controller******" + phoneNumber);
-        smsController.sendSMSEC(phoneNumber, regNumber, wifeName, "EC");
+        smsController.sendSMSEC(phoneNumber, regNumber, wifeName, "EC",anmid);
         ancVisitRepository.ecinsert(entityId, phoneNumber);
         if(!currentMethod.equalsIgnoreCase("none")&& !currentMethod.equalsIgnoreCase("none_ps") && !currentMethod.equalsIgnoreCase("none_ss")
             &&!currentMethod.equalsIgnoreCase("dmpa_injectable")&& !currentMethod.equalsIgnoreCase("traditional_methods") && !currentMethod.equalsIgnoreCase("centchroman"))
@@ -459,7 +460,7 @@ public class FormDatahandler {
         }
         if (visittype.equalsIgnoreCase("anc_registration_oa")) {
             logger.info("trying to send sms");
-            smsController.sendSMSEC(phoneNumber, regNumber, wifeName, "ANC");
+            smsController.sendSMSEC(phoneNumber, regNumber, wifeName, "ANC",anmid);
             logger.info("sms sent done");
             ancVisitRepository.insert(entityId, phoneNumber, anmNumber, "anc_visit", visitnumber, edd, wifeName, visitdate, anmid);
             ancVisitRepository.reportinsert("", entityId, wifeName, anmid, "anc", "", 0, registrationDate, village, 0, edd, "","");
@@ -925,7 +926,7 @@ public class FormDatahandler {
         					on(ANCVisitDue.class).patientnum()).get(0).toString();
         			logger.info("wom phone number from db" + womphoneNumber);
         			smsController.sendSMSPNC(womphoneNumber, regNumber, womenName,
-        					"PNC");
+        					"PNC",anmid);
         			ancVisitRepository.reportinsert(entityId, ecId, womenName, anmid,
         					"pnc", deliveryType, 0, registrationDate, village, 0, "",
         					deliveryPlace, child_dob);
@@ -940,7 +941,7 @@ public class FormDatahandler {
         		}
         if (visittype.equalsIgnoreCase("pnc_registration_oa")) {
             logger.info("phonenumber" + phoneNumber + "*** wife name" + wifeName + "***reg Number" + regNumber);
-            smsController.sendSMSEC(phoneNumber, regNumber, wifeName, "PNC");
+            smsController.sendSMSEC(phoneNumber, regNumber, wifeName, "PNC",anmid);
             ancVisitRepository.reportinsert("", entityId, wifeName, anmid, "pnc", deliveryType, 0, registrationDate, village, 0, "", deliveryPlace,child_dob);
             ancVisitRepository.reportinsert("", entityId, wifeName, anmid, "child", immunizations, 0, registrationDate, village, child_weight, "", "",child_dob);
             
@@ -1120,6 +1121,7 @@ public class FormDatahandler {
                         .getString("value") != null) ? jsonObject
                                 .getString("value") : "";
                 logger.info("res1+++++" + isCon);
+                List getPocdetails = anmService.getVisitPocdetails(visitentityid,entityidEC);
                 if (isCon.equalsIgnoreCase("yes")) {
 
                     logger.info("anmid+++++" + anmid);
@@ -1133,19 +1135,53 @@ public class FormDatahandler {
                     String hospitaltype = collect(phcdetails, on(HealthCenter.class).hospital_type()).get(0).toString();
                     String date = dateUtil.datetimenow();
                     logger.info("date time converted" + date);
-
+                    
+					
+					logger.info("POC Details------:"+getPocdetails);
+					 //String pocdetails = collect(subcenterForANM, on(ANMVillages.class).subcenter()).get(0).toString();
+					if(getPocdetails.isEmpty()){
+						
+					
                     if (hospitaltype.equalsIgnoreCase("Subcenter")) {
-                        if (visittype.equalsIgnoreCase("child_illness")) {
+                    	 logger.info("poc details empty");
+                        if (visittype.equalsIgnoreCase("child_illness") || visittype.equalsIgnoreCase("child_illness_edit")) {
                             ancVisitRepository.pocinsert(visittype, visitentityid, entityidEC, anmid, phcname, date, motherName);
                         }
-                        if (visittype.equalsIgnoreCase("anc_visit") || visittype.equalsIgnoreCase("pnc_visit")) {
+                        if (visittype.equalsIgnoreCase("anc_visit") || visittype.equalsIgnoreCase("pnc_visit")|| visittype.equalsIgnoreCase("pnc_visit_edit") || visittype.equalsIgnoreCase("anc_visit_edit")) {
                             ancVisitRepository.pocinsert(visittype, visitentityid, entityidEC, anmid, phcname, date, wifeName);
                         }
+                    }
+//                        if (visittype.equalsIgnoreCase("child_illness") || visittype.equalsIgnoreCase("anc_visit") || visittype.equalsIgnoreCase("pnc_visit")) {
+//                        	
+//                            ancVisitRepository.updatePoc(visittype, visitentityid, entityidEC, anmid, phcname, date, motherName);
+//                       
+//                        }
 
                     }
+					else{
+						 if (hospitaltype.equalsIgnoreCase("Subcenter")) {
+							 logger.info("poc details not empty");
+							 String uid = collect(getPocdetails, on(POC_Table.class).id()).get(0).toString();
+							 int rid = Integer.parseInt(uid);
+		                        if (visittype.equalsIgnoreCase("child_illness") || visittype.equalsIgnoreCase("child_illness_edit")) {
+		                        	
+		                        	ancVisitRepository.updatePoc(rid,visittype, visitentityid, entityidEC, anmid, phcname, date, motherName);
+		                        }
+		                        if (visittype.equalsIgnoreCase("anc_visit") || visittype.equalsIgnoreCase("pnc_visit")|| visittype.equalsIgnoreCase("pnc_visit_edit") || visittype.equalsIgnoreCase("anc_visit_edit")) {
+		                            ancVisitRepository.updatePoc(rid,visittype, visitentityid, entityidEC, anmid, phcname, date, wifeName);
+		                        }
+		                    }
+					}
+					
 
                     logger.info("invoking a service method");
 
+                }
+                
+                else {
+                	if(!getPocdetails.isEmpty()){
+                		ancVisitRepository.deletePoc(getPocdetails);
+                	}
                 }
             }
         }
@@ -1276,8 +1312,14 @@ public class FormDatahandler {
                 weight = jsonObject.has("value")
                         && jsonObject.getString("value") != null ? jsonObject
                                 .getString("value") : "";
+                                logger.info("birth weight : "+weight);
+                                if(!weight.isEmpty()){
                 birthWeight=Integer.parseInt(weight);
-                
+                                }
+                                else{
+                                	weight="";
+                                }
+                                logger.info("birth weight new : "+weight);
             }
             if (jsonObject.has("name")
                     && jsonObject.getString("name").equals("immunizationsGiven")) {
@@ -1308,7 +1350,7 @@ public class FormDatahandler {
 
         if (visittype.equalsIgnoreCase("child_registration_oa")) {
             logger.info("visittype: child_registration_oa");
-            smsController.sendSMSChild(phoneNumber, motherName);
+            smsController.sendSMSChild(phoneNumber, motherName,anmid);
             ancVisitRepository.insert(entityId, phoneNumber, anmNumber, "child_Immunization", visitnumber, dateOfBirth, motherName, edd, anmid);
             
             ancVisitRepository.reportinsert("", entityId, motherName, anmid, "child_oa", immunizationsGiven, 0, registrationDate, village, birthWeight, "", "",dateOfBirth);
@@ -1318,7 +1360,7 @@ public class FormDatahandler {
 
             String ptphoneNumber = collect(ancvisitdetails, on(EcRegDetails.class).phonenumber()).get(0);
             logger.info("phonenumber: " + ptphoneNumber);
-            smsController.sendSMSChild(ptphoneNumber, wifeName);
+            smsController.sendSMSChild(ptphoneNumber, wifeName,anmid);
             ancVisitRepository.insert(childId, ptphoneNumber, anmNumber, "child_Immunization", visitnumber, dateOfBirth, wifeName, edd, anmid);
             ancVisitRepository.reportinsert("", entityId, wifeName, anmid, "child", immunizationsGiven, 0, registrationDate, village, birthWeight,"" , "",dateOfBirth);
          }

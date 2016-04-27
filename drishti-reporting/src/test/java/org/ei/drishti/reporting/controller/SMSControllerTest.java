@@ -37,7 +37,7 @@ public class SMSControllerTest {
  @Test
  public void sendSMSPNCTest() throws Exception {
 	 
-	 smscontroller.sendSMSPNC("phoneNumber", "ecNumber", "wifeName", "registrationType");
+	 smscontroller.sendSMSPNC("phoneNumber", "ecNumber", "wifeName", "registrationType","anm123");
 
  }
  
@@ -45,14 +45,14 @@ public class SMSControllerTest {
  @Test
  public void sendSMSECTest() throws Exception {
 	 
-	 smscontroller.sendSMSEC("phoneNumber", "ecNumber", "wifeName", "registrationType");
+	 smscontroller.sendSMSEC("phoneNumber", "ecNumber", "wifeName", "registrationType","anm123");
   
  }
  
  @Test
  public void sendSMSChildTest() throws Exception {
 	 
-	 smscontroller.sendSMSChild("phoneNumber", "ecNumber");
+	 smscontroller.sendSMSChild("phoneNumber", "ecNumber","anm123");
   
  }
 

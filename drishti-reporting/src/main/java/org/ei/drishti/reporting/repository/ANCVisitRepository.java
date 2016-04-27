@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -65,6 +67,18 @@ public class ANCVisitRepository {
         servicesProvidedRepository.ancvisitupdate(id, newdate, visitno);
 
     }
+    @Transactional("service_provided")
+    public void updatePoc(int rid, String visittype, String visitentityid, String entityidEC, String anmid, String phc, String timestamp, String wifename) {
+        logger.info("******ancvisitrepository invoked**");
+        servicesProvidedRepository.pocvisitupdate(rid,visittype, visitentityid, entityidEC, anmid, phc, timestamp, wifename);
+
+    }
+    @Transactional("service_provided")
+    public void deletePoc(List pocDetails) {
+        logger.info("******ancvisitrepository invoked**");
+        servicesProvidedRepository.pocDelete(pocDetails);
+
+    }
 
     @Transactional("service_provided")
     public void pocinsert(String visittype, String visitentityid, String entityidEC, String anmid, String phc, String timestamp, String wifename) {
@@ -73,6 +87,13 @@ public class ANCVisitRepository {
         servicesProvidedRepository.pocsave(visittype, visitentityid, entityidEC, anmid, phc, timestamp, wifename);
 
     }
+//    @Transactional("service_provided")
+//    public void updatePoc(String visittype, String visitentityid, String entityidEC, String anmid, String phc, String timestamp, String wifename) {
+//
+//        logger.info("******ancvisitrepository**");
+//        servicesProvidedRepository.pocUpdate(visittype, visitentityid, entityidEC, anmid, phc, timestamp, wifename);
+//
+//    }
     @Transactional("service_provided")
     public void reportinsert(String visitentityid, String entityidec, String patient_name, String anm_id, String activity, String indicator, Integer indicator_count, String date, String location, Integer child_weight, String other_date, String visit_location, String dob) {
         logger.info("******anc report repository**");

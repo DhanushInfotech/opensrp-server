@@ -119,14 +119,28 @@ public class FormDataController {
                 case "anc_visit":
                     formDataHandler.visitpoc(dataObject, visittype);
                     formDataHandler.ancVisit(dataObject, visittype);
-                    break;
+                    break;                    
+                case "anc_visit_edit":
+                    formDataHandler.visitpoc(dataObject, visittype);
+                    formDataHandler.ancVisit(dataObject, visittype);
+                    break;           
+                
                 case "pnc_visit":
                     formDataHandler.visitpoc(dataObject, visittype);
                     break;
+                case "pnc_visit_edit":
+                    formDataHandler.visitpoc(dataObject, visittype);
+                    break;
+                    
                 case "child_illness":
                     formDataHandler.visitpoc(dataObject, visittype);
                     formDataHandler.child_illness(dataObject, visittype);
                     break;
+                case "child_illness_edit":
+                    formDataHandler.visitpoc(dataObject, visittype);
+                    formDataHandler.child_illness(dataObject, visittype);
+                    break;
+                    
                 case "tt":
                     formDataHandler.ttData(dataObject, visittype);
                     break;

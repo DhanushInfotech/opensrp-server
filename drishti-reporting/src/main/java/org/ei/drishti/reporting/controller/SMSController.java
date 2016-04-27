@@ -33,7 +33,7 @@ public class SMSController {
         this.httpAgent = httpAgent;
     }
 
-    public void sendSMSPNC(String phoneNumber, String ecNumber, String womenName, String registrationType) {
+    public void sendSMSPNC(String phoneNumber, String ecNumber, String womenName, String registrationType, String anmId) {
 
         try {
             logger.info("sms controller invoked");
@@ -44,7 +44,7 @@ public class SMSController {
             String wifeName=womenName.replaceAll(" ", "%20");
             String message = "Dear%20" + wifeName + "%2C%20you%20and%20your%20child%20have%20been%20registered%20with%20" + registrationType + "%20number%20" + ecNumber + "%20";
             logger.info("drishti sms url********" + drishtiSMSURL + "******* json obj value*****" + obj1);
-            httpAgent.get(drishtiSMSURL + "/?tel=%5B%22tel:" + phoneNumber + "%22%5D&message=%22" + message + "%22");
+            httpAgent.get(drishtiSMSURL + "/?tel=%5B%22tel:" + phoneNumber + "%22%5D&message=%22" + message + "%22&anmid=%22"+anmId+"%22");
             logger.info("drishti sms url********" + drishtiSMSURL + "******* success");
 
         } catch (Exception e) {
@@ -55,7 +55,7 @@ public class SMSController {
         }
     }
 
-    public void sendSMSEC(String phoneNumber, String ecNumber, String womenName, String registrationType) {
+    public void sendSMSEC(String phoneNumber, String ecNumber, String womenName, String registrationType,String anmId) {
 
         try {
             logger.info("Reg sms controller invoked");
@@ -66,7 +66,7 @@ public class SMSController {
             String wifeName=womenName.replaceAll(" ", "%20");
             String message = "Dear%20" + wifeName + "%2C%20you%20have%20been%20registered%20with%20" + registrationType + "%20number%20" + ecNumber + "%20";
             logger.info("drishti sms url********" + drishtiSMSURL + "******* json obj value*****" + obj1);
-            httpAgent.get(drishtiSMSURL + "/?tel=%5B%22tel:" + phoneNumber + "%22%5D&message=%22" + message + "%22");
+            httpAgent.get(drishtiSMSURL + "/?tel=%5B%22tel:" + phoneNumber + "%22%5D&message=%22" + message + "%22&anmid=%22"+anmId+"%22");
             logger.info("drishti sms url********" + drishtiSMSURL + "******* success");
         } catch (Exception e) {
             logger.error(format(
@@ -75,7 +75,7 @@ public class SMSController {
         }
     }
 
-    public void sendSMSChild(String phoneNumber, String womenName) {
+    public void sendSMSChild(String phoneNumber, String womenName,String anmId) {
 
         try {
             logger.info("sms controller invoked");
@@ -86,7 +86,7 @@ public class SMSController {
             String motherName=womenName.replaceAll(" ", "%20");
             String message = "Your%20Child%20have%20been%20registered%20with%20Mother%20Name" + motherName + "%20";
             logger.info("drishti sms url********" + drishtiSMSURL + "******* json obj value*****" + obj1);
-            httpAgent.get(drishtiSMSURL + "/?tel=%5B%22tel:" + phoneNumber + "%22%5D&message=%22" + message + "%22");
+            httpAgent.get(drishtiSMSURL + "/?tel=%5B%22tel:" + phoneNumber + "%22%5D&message=%22" + message + "%22&anmid=%22"+anmId+"%22");
 
         } catch (Exception e) {
             logger.error(format("SMS processing failed with exception {0}", e));

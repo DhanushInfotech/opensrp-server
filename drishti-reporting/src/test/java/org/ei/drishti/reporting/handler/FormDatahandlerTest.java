@@ -95,7 +95,8 @@ public class FormDatahandlerTest {
 		
 		JSONObject dataobject = data();
 		formDatahandler.ecRegistration(dataobject, "12645");
-		verify(smsController).sendSMSEC("", "", "", "EC");
+                smsController.sendSMSEC("", "", "", "EC","anm123");
+		verify(smsController).sendSMSEC("", "", "", "EC","anm123");
 		verify(ancVisitRepository).ecinsert("entity", "");
 
 	}
@@ -147,8 +148,8 @@ public class FormDatahandlerTest {
 		JSONObject dataobject = data();
 		EcRegDetails ecRegDetails = new EcRegDetails("entity", "213");
 		when(anmService.getPhoneNumber("entity")).thenReturn(asList(ecRegDetails));
-		smsController.sendSMSChild("", "EC");
-		verify(smsController).sendSMSChild("", "EC");
+		smsController.sendSMSChild("", "EC","anm123");
+		verify(smsController).sendSMSChild("", "EC","anm123");
 		formDatahandler.childRegistration(dataobject, "child_registration_oa","SDF");
 		formDatahandler.childRegistration(dataobject, "child_registration_ec","SD");
 		ancVisitRepository.insert("entity", "2334", "12345", "sdaf", 2312,"sdf", "ewqr", "12/7/2015", "anm123");
@@ -163,8 +164,8 @@ public class FormDatahandlerTest {
 		JSONObject dataobject = data();
 		ANCVisitDue ancvisitDue = new ANCVisitDue("ecId", "patientnum","anmnum", "visittype", 12312, "lmpdate", "womenname","visitdate", "anmid");
 		when(visitService.getVisitDue("ecId")).thenReturn(asList(ancvisitDue));
-		smsController.sendSMSPNC("phoneNumber", "ecNumber", "wifeName", "registrationType");
-		verify(smsController).sendSMSPNC("phoneNumber", "ecNumber", "wifeName", "registrationType");
+		smsController.sendSMSPNC("phoneNumber", "ecNumber", "wifeName", "registrationType","anm123");
+		verify(smsController).sendSMSPNC("phoneNumber", "ecNumber", "wifeName", "registrationType","anm123");
 		formDatahandler.pncRegistration(dataobject, "delivery_outcome","12");
 		formDatahandler.pncRegistration(dataobject, "pnc_registration_oa","12645");
     	ancVisitRepository.insert("entity", "ecId", "12345", "sdaf", 2312,"sdf", "ewqr", "12/7/2015", "anm123");

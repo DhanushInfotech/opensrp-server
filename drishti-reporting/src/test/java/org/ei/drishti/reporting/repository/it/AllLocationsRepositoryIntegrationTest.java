@@ -46,11 +46,11 @@ public class AllLocationsRepositoryIntegrationTest extends ServicesProvidedInteg
     @Transactional("service_provided")
     @Rollback
     public void shouldFetchLocationByANMIdentifier() throws Exception {
-        PHC phc = new PHC("PHC X", "Bherya");
-        PHC anotherPHC = new PHC("PHC Y", "Bherya");
+        PHC phc = new PHC("PHC X", "anganwadi_10");
+        PHC anotherPHC = new PHC("PHC Y", "anganwadi_10");
         template.save(phc);
         template.save(anotherPHC);
-        Location location = new Location("Bherya", "Sub Center", phc, "taluka", "mysore", "karnataka");
+        Location location = new Location("anganwadi_10", "Sub Center", phc, "taluka", "mysore", "karnataka");
         Location anotherLocation = new Location("Keelanapura", "Sub Center 2", anotherPHC, "taluka", "mysore", "karnataka");
         template.save(location);
         template.save(anotherLocation);
@@ -63,7 +63,7 @@ public class AllLocationsRepositoryIntegrationTest extends ServicesProvidedInteg
 
         Location fetchedLocation = repository.fetchByANMIdentifier("anm1");
 
-        assertEquals("Bherya", fetchedLocation.village());
+        assertEquals("anganwadi_10", fetchedLocation.village());
         assertEquals("Sub Center", fetchedLocation.subCenter());
         assertEquals(phc, fetchedLocation.phc());
         assertEquals("taluka", fetchedLocation.taluka());
