@@ -72,6 +72,10 @@ public class AllLocationsRepositoryTest {
 		
 	}*/
 	
-	
-
+	@Test
+	public void PocdetailsTest(){
+		String entityId = null;
+		String entityidEC = null;
+		allLocationsRepository.Pocdetails(entityId, entityidEC);
+	}
 }

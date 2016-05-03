@@ -107,5 +107,10 @@ public class AllServicesProvidedRepositoryTest {
 		
 		allServicesProvidedRepository.ecsave("entityid", "phonenumber");
 	}
+	
+	@Test
+	public void pocDeleteTest(){
+		allServicesProvidedRepository.pocDelete(null);
+	}
 
 }

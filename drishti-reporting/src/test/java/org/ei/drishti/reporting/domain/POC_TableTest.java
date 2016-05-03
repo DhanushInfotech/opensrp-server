@@ -44,10 +44,22 @@ public class POC_TableTest {
 	}
 	
 	@Test
+	public void setvisitentityid_Test(){
+		String visitentityid = null;
+		poc_Table.setvisitentityid(visitentityid);
+	}
+	
+	@Test
 	public void entityidecTest(){
 		String s = null;
 		String w = poc_Table.entityidec();
 		assertEquals(w,s);
+	}
+	
+	@Test
+	public void setentityidecTest(){
+		String entityidec = null;
+		poc_Table.setentityidec(entityidec);
 	}
 	
 	@Test
@@ -58,10 +70,22 @@ public class POC_TableTest {
 	}
 	
 	@Test
+	public void setanmidTest(){
+		String anmid = null;
+		poc_Table.setanmid(anmid);
+	}
+	
+	@Test
 	public void levelTest(){
 		String s = null;
 		String w = poc_Table.level();
 		assertEquals(w,s);
+	}
+	
+	@Test
+	public void setlevelTest(){
+		String level = null;
+		poc_Table.setlevel(level);
 	}
 	
 	@Test
@@ -72,10 +96,22 @@ public class POC_TableTest {
 	}
 	
 	@Test
+	public void setclientversionTest(){
+		String clientversion = null;
+		poc_Table.setclientversion(clientversion);
+	}
+	
+	@Test
 	public void serverversionTest(){
 		String s = null;
 		String w = poc_Table.serverversion();
 		assertEquals(w,s);
+	}
+	
+	@Test
+	public void setserverversionTest(){
+		String serverversion = null;
+		poc_Table.setserverversion(serverversion);
 	}
 	
 	@Test
@@ -86,10 +122,22 @@ public class POC_TableTest {
 	}
 	
 	@Test
+	public void setvisittypeTest(){
+		String visittype = null;
+		poc_Table.setvisittype(visittype);
+	}
+	
+	@Test
 	public void phcTest(){
 		String s = null;
 		String w = poc_Table.phc();
 		assertEquals(w,s);
+	}
+	
+	@Test
+	public void setphcTest(){
+		String phc = null;
+		poc_Table.setphc(phc);
 	}
 	
 	@Test
@@ -100,10 +148,22 @@ public class POC_TableTest {
 	}
 	
 	@Test
+	public void setpendingTest(){
+		String pending = null;
+		poc_Table.setpending(pending);
+	}
+	
+	@Test
 	public void docidTest(){
 		String s = null;
 		String w = poc_Table.docid();
 		assertEquals(w,s);
+	}
+	
+	@Test
+	public void setdocidTest(){
+		String docid = null;
+		poc_Table.setdocid(docid);
 	}
 	
 	@Test
@@ -114,10 +174,22 @@ public class POC_TableTest {
 	}
 	
 	@Test
+	public void settimestampTest(){
+		Timestamp timestamp = null;
+		poc_Table.settimestamp(timestamp);
+	}
+	
+	@Test
 	public void wifenameTest(){
 		String s = null;
 		String w = poc_Table.wifename();
 		assertEquals(w,s);
+	}
+	
+	@Test
+	public void setwifenameTest(){
+		String wifename = null;
+		poc_Table.setwifename(wifename);
 	}
 	
 	@Test
